@@ -18,8 +18,16 @@ bool UMainMenu::Initialize()
 	return true;
 }
 
+void UMainMenu::SetMenuInterface(IMenuInterface* MenuInterface)
+{
+	this->MenuInterface = MenuInterface;
+}
+
 void UMainMenu::HostServer() {
-	UE_LOG(LogTemp, Warning, TEXT("Host button has been clicked!"));
+	if (MenuInterface != nullptr)
+	{
+		MenuInterface->Host();
+	}
 }
 
 void UMainMenu::JoinServer() {
